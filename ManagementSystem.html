@@ -1,0 +1,67 @@
+<script>
+  function getAccess(person) {
+    if (person.role === "admin") {
+      if (!person.active) {
+        return "Admin Access Revoked";
+      } else if (person.experience > 5) {
+        return person.department === "IT"
+          ? "Full IT Admin Access"
+          : "Full General Admin Access";
+      } else {
+        return "Limited Admin Access";
+      }
+    } else if (person.role === "manager") {
+      if (!person.active) {
+        return "Manager Access Revoked";
+      } else if (person.experience > 3) {
+        return person.department === "Sales"
+          ? "Full Sales Manager Access"
+          : "Full Manager Access";
+      } else {
+        return "Limited Manager Access";
+      }
+    } else if (person.role === "user") {
+      if (!person.active) {
+        return "User Access Revoked";
+      } else if (person.department === "Support") {
+        return "Priority Support Access";
+      } else {
+        return "User Access";
+      }
+    } else {
+      return "Invalid Role";
+    }
+  }
+
+  let person1 = {
+    role: "admin",
+    experience: 7,
+    active: true,
+    department: "IT",
+  };
+  console.log(getAccess(person1));
+
+  let person2 = {
+    role: "manager",
+    experience: 4,
+    active: true,
+    department: "Marketing",
+  };
+  console.log(getAccess(person2));
+
+  let person3 = {
+    role: "user",
+    experience: 2,
+    active: true,
+    department: "Support",
+  };
+  console.log(getAccess(person3));
+
+  let person4 = {
+    role: "admin",
+    experience: 3,
+    active: false,
+    department: "Finance",
+  };
+  console.log(getAccess(person4));
+</script>
